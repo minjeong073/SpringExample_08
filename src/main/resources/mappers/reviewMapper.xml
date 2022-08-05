@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- mybatis dtd -->
+<!-- mybatis DTD -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
@@ -21,6 +21,73 @@
  			`new_review`
  		WHERE
  			`id` = #{id}
+ 			
  	</select>
- 
+
+
+	<!-- parameter 여러개 이고 서로 다른 경우 map -> @Param annotation 동적으로 값 가져옴 -->
+	<!-- insert 에서는 resultType X, 자동으로 실행된 행의 개수 int 로 리턴 
+		(delete : 삭제된 행의 개수, update 수정된 행의 개수 리턴) -->
+		
+	<insert id="insertReview" parameterType="map">
+	
+		INSERT INTO
+			`new_review`
+		(
+			`storeId`
+ 			, `menu`
+ 			, `userName`
+ 			, `point`
+ 			, `review`
+ 			, `createdAt`
+ 			, `updatedAt`
+		)
+		VALUES
+		(
+			<!-- @Param annotation 키워드 -->
+			#{storeId}
+			, #{menu}
+			, #{userName}
+			, #{point}
+			, #{review}
+			, now()
+			, now()
+		)
+		
+	</insert> 
+	
+	
+	<!-- ex02 - 2. -->
+	<insert id="insertReviewByObject" parameterType="com.ming.spring.ex.mybatis.model.Review">
+		
+		INSERT INTO
+			`new_review`
+		(
+			`storeId`
+ 			, `menu`
+ 			, `userName`
+ 			, `point`
+ 			, `review`
+ 			, `createdAt`
+ 			, `updatedAt`
+		)
+		VALUES
+		(
+			<!-- Review 클래스의 멤버변수 이름 -->
+			#{storeId}
+			, #{menu}
+			, #{userName}
+			, #{point}
+			, #{review}
+			, now()
+			, now()
+		)	 
+		
+	</insert>
+	
+	
+	
  </mapper>
+ 
+ 
+ 

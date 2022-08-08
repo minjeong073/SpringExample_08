@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- mybatis DTD -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.ming.spring.ex.jsp.dao.UserDAO">
+ 	
+ 	<insert id="insertUser" parameterType="map">
+		INSERT INTO
+			`new_user`
+		(
+			`name`
+			, `yyyymmdd`
+			, `introduce`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{name}
+			, #{birthDay}
+			, #{introduce}
+			, #{email}
+			, now()
+			, now()
+		) 	
+ 	</insert>
+ 	
+ 	
+ 	<!-- 가장 최근에 등록된 사용자 정보를 하나 얻어 오는 기능 -->
+ 	<select id="getUser" resultType="com.ming.spring.ex.jsp.model.User">
+ 		
+ 		SELECT
+ 			`id`
+ 			, `name`
+ 			, `yyyymmdd`
+ 			, `introduce`
+ 			, `email`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`new_user`
+ 		ORDER BY
+ 			`id` DESC
+ 		LIMIT
+ 			1
+ 	
+ 	</select>
+ 	
+ 	
+ 
+ </mapper>

@@ -19,8 +19,8 @@ public class UserBO {
 	}
 	
 	// 가장 최근에 등록된 사용자 정보를 하나 얻어 오는 기능
-	public User getUser() {
-		return userDAO.getUser();
+	public User getLastUser() {
+		return userDAO.getLastUser();
 	}
 	
 	

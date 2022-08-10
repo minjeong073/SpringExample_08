@@ -48,17 +48,17 @@ public class UserController {
 	
 	// 가장 최근에 등록된 사용자 정보를 하나 얻어 오는 기능
 	// select query 로 가져옴
-	@RequestMapping("/getUser")
-	@ResponseBody
-	public User getUser() {
-		return userBO.getUser();
-	}
-
-	@RequestMapping("/getUserView")
-	public String getUserView(Model model) {
-		User newUser = userBO.getUser();
-		model.addAttribute("user", newUser);
+	
+	// 데이터 저장하고 가져올 수 있는 model 사용
+	@RequestMapping("/lastUser")
+	public String lastUser(Model model) {
+		User lastUser = userBO.getLastUser();
+		model.addAttribute("user", lastUser);
+		model.addAttribute("title", "최근 등록 사용자 정보");
 		
 		return "jsp/userGet";
 	}
+
+
 }
+

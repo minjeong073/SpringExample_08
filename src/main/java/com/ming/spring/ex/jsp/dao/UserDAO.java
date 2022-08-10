@@ -16,5 +16,5 @@ public interface UserDAO {
 			,@Param("email") String email);
 	
 	// 가장 최근에 등록된 사용자 정보를 하나 얻어 오는 기능
-	public User getUser();
+	public User getLastUser();
 }

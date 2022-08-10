@@ -8,17 +8,22 @@
 </head>
 <body>
 
-	<h2>가장 최근에 등록된 사용자 정보</h2>
+	<h1>${title }</h1>
 	
-	<table>
+	<table border="1">
 		<tr>
-			<th> 이름 </th>
+			<th>이름</th>
+			<td>${user.name}</td>
+		</tr>
+		<tr>
 			<th>생년월일</th>
+			<td>${user.yyyymmdd }</td>
 		</tr>
 		<tr>
-			<td> ${user.name}</td>
-			<td> ${user.yyyymmdd }</td>
+			<th>자기소개</th>
+			<td> ${user.introduce}</td>
 		</tr>
+		<!-- EL tag 가 자동으로 멤버변수 가져오게 함 -->
 	</table>
 </body>
 </html>

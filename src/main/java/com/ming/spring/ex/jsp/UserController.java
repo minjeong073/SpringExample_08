@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,7 +57,7 @@ public class UserController {
 		model.addAttribute("user", lastUser);
 		model.addAttribute("title", "최근 등록 사용자 정보");
 		
-		return "jsp/userGet";
+		return "jsp/userInfo";
 	}
 
 	
@@ -67,25 +68,16 @@ public class UserController {
 	// insert 후 새로 생성된 id(pk) 가져오기
 	@PostMapping("/add/view")
 	public String addUserView(
-			@RequestParam("name") String name
-			, @RequestParam("birthday") String birthDay
-			, @RequestParam("introduce") String introduce
-			, @RequestParam("email") String email
+			@ModelAttribute User user
 			, Model model
 			) {
-		
-		User user = new User();
-		user.setName(name);
-		user.setYyyymmdd(birthDay);
-		user.setIntroduce(introduce);
-		user.setEmail(email);
 		
 		int count = userBO.addUserByObject(user);
 		
 		model.addAttribute("user", user);
 
 		// 전달한 결과에 대한 pk 가 객체 자체에다가 넣어짐
-		return "jsp/userGet";
+		return "jsp/userInfo";
 	}
 
 }

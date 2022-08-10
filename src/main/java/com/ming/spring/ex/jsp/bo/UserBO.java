@@ -23,4 +23,10 @@ public class UserBO {
 		return userDAO.getUser();
 	}
 	
+	
+	// insert 후 새로 생성된 id(pk) 가져오기
+	public int addUserByObject(User user) {
+		return userDAO.insertUserByObject(user);
+	}
+	
 }

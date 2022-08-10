@@ -50,5 +50,33 @@
  	</select>
  	
  	
+ 	<!-- insert 후 새로 생성된 id(pk) 가져오기 -->
+ 	<!-- useGeneratedKeys="true" : insert 와 동시에 해당하는 pk 값 가져온다 -->
+ 	<!-- keyProperty="id" : pk 로 id 를 가져온다 -->
+ 	<insert id="insertUserByObject" parameterType="com.ming.spring.ex.jsp.model.User"
+ 	useGeneratedKeys="true" keyProperty="id">
+ 		INSERT INTO
+			`new_user`
+		(
+			`name`
+			, `yyyymmdd`
+			, `introduce`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{name}
+			, #{yyyymmdd}
+			, #{introduce}
+			, #{email}
+			, now()
+			, now()
+		)
+ 		
+ 	</insert>
+ 	
+ 	
  
  </mapper>

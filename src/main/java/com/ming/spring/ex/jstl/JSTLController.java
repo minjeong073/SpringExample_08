@@ -1,5 +1,6 @@
 package com.ming.spring.ex.jstl;
 
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -78,5 +79,17 @@ public class JSTLController {
 		model.addAttribute("books", bookList);
 		
 		return "jstl/ex02";
+	}
+	
+	@GetMapping("/ex03")
+	public String jstlEx03(Model model) {
+		
+		Date now = new Date();
+		model.addAttribute("now", now);
+		
+		String dateString = "2022/08/12 18:18:20";
+		model.addAttribute("dateString", dateString);
+		
+		return "jstl/ex03";
 	}
 }

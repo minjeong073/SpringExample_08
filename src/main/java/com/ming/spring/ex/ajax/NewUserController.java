@@ -73,4 +73,29 @@ public class NewUserController {
 		return map;
 	}
 	
+	
+	// api
+	// email 중복 확인하는 api
+	@GetMapping("/is_duplicate")
+	@ResponseBody
+	public Map<String, Boolean> isDuplicate(@RequestParam("email") String email) {
+		
+		boolean isDuplicate = newUserBO.isDuplicateEmail(email);
+		// {"is_duplicate":true} or {"is_duplicate":false}
+		
+		Map<String, Boolean> map = new HashMap<>();
+		
+//		if (isDuplicate) {
+//			map.put("is_duplicate", true);
+//		} else {
+//			map.put("is_duplicate", false);
+//		}
+
+		// 위의 코드 간결하게
+		map.put("is_duplicate", isDuplicate);
+
+		return map;		
+	}
+	
+
 }

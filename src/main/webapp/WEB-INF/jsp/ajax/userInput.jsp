@@ -19,8 +19,12 @@
 	<!-- <form method="get" action="/ajax/user/add" id="userForm"> -->
 	
 		<label>이름</label> <input type="text" name="name" id="nameInput">
+		<br>
 		<label>생년월일</label> <input type="text" name="birthday" id="birthdayInput"> 
+		<br>
 		<label>이메일</label> <input type="text" name="email" id="emailInput">
+		<button type="button" id="checkBtn">중복 확인</button>
+		<br>
 		<button type="submit" id="saveBtn">저장</button>
 		<%-- 유효성 검사 - 비어져 있는 경우 --%>
 	<!-- </form> -->
@@ -29,6 +33,39 @@
 	
 		$(document).ready(function() {
 		
+			// email 중복 여부
+			$("#checkBtn").on("click", function() {
+				let email = $("#emailInput").val();
+				
+				if (email == "") {
+					alert("이메일을 입력하세요");
+					return;
+				}
+				
+				$.ajax({
+					// request 의미하는 option
+					type:"get"
+					, url:"/ajax/user/is_duplicate"
+					, data:{"email":email}
+					// response 결과에 대한 function 수행
+					, success:function(data) {
+						// {"is_duplicate":true} or {"is_duplicate":false}
+						
+						if (data.is_duplicate) { // 중복 될 경우
+							alert("이메일이 중복되었습니다");
+						} else {
+							alert("사용 가능합니다");
+						}
+					}
+					, error:function() {
+						alert("중복 확인 에러");
+					}
+					
+				});
+				
+			});
+			
+			
 			// 3. AJAX 
 			// form tag 없애고 form 이 해야할 동작을 AJAX 가 수행
 			//

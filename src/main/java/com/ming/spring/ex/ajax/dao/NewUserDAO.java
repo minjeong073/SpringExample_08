@@ -16,4 +16,8 @@ public interface NewUserDAO {
 			@Param("name") String name
 			, @Param("birthDay") String birthDay
 			, @Param("email") String email);
+	
+	// email 중복 확인
+	// 같은 값이 없으면 0 리턴 
+	public int selectCountEmail(@Param("email") String email);
 }

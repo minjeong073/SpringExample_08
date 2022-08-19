@@ -21,4 +21,21 @@ public class NewUserBO {
 	public int addUser(String name, String birthDay, String email) {
 		return newUserDAO.insertUser(name, birthDay, email);
 	}
+	
+	// email 중복 확인
+	public boolean isDuplicateEmail(String email) {
+		// DAO 는 해당 query 수행만 하고, 중복 여부 판단은 BO 가 하도록
+		// count 로 개수 세서 리턴 한 값 : 0 (같은 값 없음)
+		
+//		int count = newUserDAO.selectCountEmail(email);
+//		
+//		if (count == 0) {	// 중복 안된 경우 
+//			return false;
+//		} else {
+//			return true;
+//		}
+//		
+		// 위의 코드 간결하게 작성
+		return newUserDAO.selectCountEmail(email) != 0;
+	}
 }
